@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SCW Smart Life</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+  background:#020817;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.hero{
+  min-height:100vh;
+  padding:18px 3vw 20px;
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 20% 25%,rgba(56,189,248,.24),transparent 30%),
+    radial-gradient(circle at 82% 32%,rgba(37,99,235,.25),transparent 36%),
+    linear-gradient(135deg,#041225 0%,#061327 45%,#020617 100%);
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:auto -10% -22% -10%;
+  height:220px;
+
+  background:linear-gradient(
+    180deg,
+    rgba(14,165,233,.16),
+    rgba(2,6,23,0)
+  );
+
+  filter:blur(22px);
+}
+
+.nav{
+  position:relative;
+  z-index:5;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  max-width:1600px;
+  margin:0 auto 18px;
+
+  gap:20px;
+}
+
+.logo{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+
+  padding:12px 20px;
+  border-radius:999px;
+
+  border:1px solid rgba(125,211,252,.25);
+  background:rgba(255,255,255,.06);
+
+  box-shadow:0 0 30px rgba(14,165,233,.10);
+
+  color:#e0faff;
+  font-weight:800;
+}
+
+.nav-links{
+  display:flex;
+  gap:72px;
+
+  color:#e5eefb;
+  font-weight:700;
+  font-size:18px;
+
+  letter-spacing:.5px;
+  white-space:nowrap;
+}
+
+.nav-links a.active{
+  color:#22d3ee;
+}
+
+.contact{
+  padding:14px 30px;
+  border-radius:999px;
+
+  background:linear-gradient(135deg,#2563eb,#22d3ee);
+
+  font-weight:900;
+
+  box-shadow:0 0 28px rgba(34,211,238,.28);
+}
+
+.layout{
+  position:relative;
+  z-index:2;
+
+  max-width:1700px;
+  margin:0 auto;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(620px,720px)
+    minmax(760px,860px);
+
+  justify-content:center;
+
+  gap:72px;
+
+  align-items:center;
+
+  min-height:calc(100vh - 190px);
+}
+
+/* 左侧 */
+
+.copy{
+  max-width:720px;
+
+  padding-top:0;
+
+  justify-self:end;
+
+  padding-right:0;
+
+  transform:none;
+}
+
+.copy h1{
+  font-size:clamp(54px,5vw,84px);
+
+  line-height:1.08;
+
+  letter-spacing:-.04em;
+
+  text-shadow:0 18px 55px rgba(0,0,0,.45);
+}
+
+.copy h1 span{
+  display:block;
+
+  margin-top:6px;
+
+  padding-left:.65em;
+
+  background:linear-gradient(
+    90deg,
+    #67e8f9,
+    #38bdf8,
+    #dbeafe
+  );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+}
+
+.copy p{
+  margin-top:18px;
+
+  max-width:680px;
+
+  font-size:20px;
+  line-height:1.8;
+
+  color:#dbeafe;
+}
+
+.buttons{
+  display:flex;
+  gap:16px;
+
+  margin-top:26px;
+
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:22px 40px;
+
+  border-radius:999px;
+
+  font-size:17px;
+  font-weight:800;
+
+  border:1px solid rgba(255,255,255,.16);
+}
+
+.btn.primary{
+  background:linear-gradient(135deg,#67e8f9,#2563eb);
+  color:#02111f;
+  border:none;
+}
+
+.btn.ghost{
+  background:rgba(255,255,255,.04);
+  color:#fff;
+}
+
+/* 功能卡 */
+
+.features{
+  margin-top:28px;
+
+  display:grid;
+
+  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  gap:14px;
+
+  max-width:690px;
+}
+
+.feature{
+  min-height:122px;
+
+  padding:20px 18px;
+
+  border-radius:24px;
+
+  background:rgba(15,23,42,.52);
+
+  border:1px solid rgba(125,211,252,.12);
+
+  backdrop-filter:blur(12px);
+}
+
+.feature .ico{
+  font-size:26px;
+  color:#38bdf8;
+}
+
+.feature h3{
+  margin-top:10px;
+  font-size:20px;
+}
+
+.feature small{
+  display:block;
+
+  margin-top:6px;
+
+  color:#b6c7df;
+
+  line-height:1.42;
+}
+
+/* 右侧展示 */
+
+.showcase{
+  justify-self:start;
+
+  transform:none;
+
+  position:relative;
+
+  border-radius:42px;
+
+  padding:14px;
+
+  width:100%;
+  max-width:860px;
+
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.16),
+    rgba(255,255,255,.04)
+  );
+
+  border:1px solid rgba(255,255,255,.15);
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.42),
+    inset 0 0 0 1px rgba(255,255,255,.05);
+}
+
+.panel{
+  position:relative;
+
+  min-height:720px;
+
+  border-radius:36px;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 50% 42%,rgba(14,165,233,.12),transparent 46%),
+    rgba(2,6,23,.55);
+
+  padding:20px 20px 24px;
+}
+
+.status{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  color:#e5efff;
+  font-size:18px;
+}
+
+.product-title{
+  position:absolute;
+
+  top:30px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  font-size:28px;
+  font-weight:900;
+
+  letter-spacing:.08em;
+
+  color:#fff;
+
+  white-space:nowrap;
+}
+
+.carousel{
+  position:relative;
+
+  height:650px;
+
+  margin-top:38px;
+
+  perspective:1100px;
+}
+
+.card{
+  position:absolute;
+
+  top:0;
+  left:50%;
+
+  width:430px;
+  height:580px;
+
+  transform-style:preserve-3d;
+
+  border-radius:0;
+
+  overflow:visible;
+
+  background:transparent;
+
+  border:none;
+
+  box-shadow:none;
+
+  opacity:.26;
+
+  transition:all 1.6s ease-in-out;
+}
+
+.card img{
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
+
+  background:transparent;
+}
+
+/* 中间主卡 */
+
+.card.main{
+  opacity:1;
+
+  z-index:8;
+
+  transform:
+    translateX(-50%)
+    scale(1.12);
+}
+
+/* 左侧 */
+
+.card.left1{
+  z-index:5;
+
+  transform:
+    translateX(-98%)
+    scale(.82)
+    rotateY(8deg);
+}
+
+.card.left2{
+  z-index:4;
+
+  transform:
+    translateX(-148%)
+    scale(.66)
+    rotateY(12deg);
+}
+
+/* 右侧 */
+
+.card.right1{
+  z-index:5;
+
+  transform:
+    translateX(-2%)
+    scale(.82)
+    rotateY(-8deg);
+}
+
+.card.right2{
+  z-index:4;
+
+  transform:
+    translateX(46%)
+    scale(.66)
+    rotateY(-10deg);
+}
+
+.card.hide-left{
+  z-index:1;
+
+  transform:
+    translateX(-190%)
+    scale(.58);
+
+  opacity:0;
+}
+
+.card.hide-right{
+  z-index:1;
+
+  transform:
+    translateX(95%)
+    scale(.58);
+
+  opacity:0;
+}
+
+.name-badge{
+  position:absolute;
+
+  left:50%;
+  bottom:4px;
+
+  transform:translateX(-50%);
+
+  padding:10px 22px;
+
+  border-radius:999px;
+
+  background:linear-gradient(
+    135deg,
+    #1d4ed8,
+    #22d3ee
+  );
+
+  font-size:15px;
+  font-weight:900;
+
+  white-space:nowrap;
+
+  box-shadow:0 0 20px rgba(34,211,238,.30);
+
+  z-index:20;
+}
+
+.arrow{
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:54px;
+  height:54px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(255,255,255,.08);
+
+  border:1px solid rgba(255,255,255,.14);
+
+  font-size:36px;
+
+  color:#e0f2fe;
+
+  cursor:pointer;
+
+  z-index:30;
+}
+
+.arrow.left{
+  left:14px;
+}
+
+.arrow.right{
+  right:14px;
+}
+
+/* 底部 */
+
+.bottom-bar{
+  max-width:1600px;
+
+  margin:18px auto 0;
+
+  padding:22px 28px;
+
+  border-radius:30px;
+
+  background:rgba(15,23,42,.52);
+
+  border:1px solid rgba(255,255,255,.10);
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:24px;
+}
+
+.bottom-item{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.bottom-item .icon{
+  width:54px;
+  height:54px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.06);
+
+  border:1px solid rgba(125,211,252,.14);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:28px;
+}
+
+.bottom-item h3{
+  font-size:18px;
+}
+
+.bottom-item p{
+  margin-top:4px;
+
+  color:#b6c7df;
+
+  font-size:14px;
+}
+
+@media(max-width:1100px){
+
+  .layout{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .copy{
+    margin:0 auto;
+  }
+
+  .showcase{
+    margin:0 auto;
+  }
+}
+
+
+
+/* ===== 导航栏最终位置锁定：防止支持服务 / 关于我们点击时突然上移 ===== */
+html{
+  scroll-behavior:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow-y:scroll !important;
+  scrollbar-gutter:stable !important;
+}
+
+body{
+  margin:0 !important;
+  padding:0 !important;
+  overflow-x:hidden !important;
+}
+
+/* 所有页面顶部统一 18px，避免页面切换时导航栏上下跳动 */
+.hero,
+.page,
+.container{
+  padding-top:18px !important;
+}
+
+/* 首页 hero 原本已有 padding，避免重复导致首页下移 */
+.hero{
+  padding-left:3vw !important;
+  padding-right:3vw !important;
+}
+
+/* 联系页 page 原本已有 padding，统一保留左右和底部 */
+.page{
+  padding-left:3vw !important;
+  padding-right:3vw !important;
+}
+
+/* about / support 使用 container 包导航，必须锁定顶部距离 */
+.container{
+  width:min(1680px,96%) !important;
+  margin:auto !important;
+}
+
+/* 统一导航栏，不使用 sticky，避免切换页面时被浏览器重新计算位置 */
+.nav{
+  position:relative !important;
+  top:auto !important;
+  left:auto !important;
+  right:auto !important;
+  z-index:10 !important;
+
+  width:min(1600px,100%) !important;
+  max-width:1600px !important;
+  height:58px !important;
+  min-height:58px !important;
+
+  margin:0 auto 18px !important;
+  padding:0 !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:20px !important;
+
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+.nav::before,
+.nav::after{
+  display:none !important;
+  content:none !important;
+}
+
+.logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  height:46px !important;
+  min-width:164px !important;
+  padding:0 18px !important;
+  border-radius:999px !important;
+  border:1px solid rgba(125,211,252,.25) !important;
+  background:rgba(255,255,255,.06) !important;
+  box-shadow:0 0 30px rgba(14,165,233,.10) !important;
+  color:#e0faff !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+  white-space:nowrap !important;
+}
+
+.nav-links{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:72px !important;
+  color:#e5eefb !important;
+  font-weight:700 !important;
+  font-size:18px !important;
+  letter-spacing:.5px !important;
+  white-space:nowrap !important;
+}
+
+.nav-links a{
+  text-decoration:none !important;
+  color:inherit !important;
+  transition:.25s !important;
+}
+
+.nav-links a:hover{
+  color:#67e8f9 !important;
+}
+
+.nav-links a.active{
+  color:#22d3ee !important;
+}
+
+.contact{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  height:48px !important;
+  padding:0 30px !important;
+  border-radius:999px !important;
+  background:linear-gradient(135deg,#2563eb,#22d3ee) !important;
+  color:#fff !important;
+  font-weight:900 !important;
+  box-shadow:0 0 28px rgba(34,211,238,.28) !important;
+  text-decoration:none !important;
+  white-space:nowrap !important;
+}
+
+/* about/support 标题区域减少顶部差异，避免看起来导航突然抬高 */
+.page-title,
+.hero{
+  margin-top:0 !important;
+}
+
+@media(max-width:900px){
+  .nav{
+    width:100% !important;
+    height:auto !important;
+    min-height:auto !important;
+    padding:14px !important;
+    flex-direction:column !important;
+    border-radius:24px !important;
+  }
+
+  .nav-links{
+    gap:22px !important;
+    flex-wrap:wrap !important;
+  }
+
+  .contact{
+    margin-right:0 !important;
+  }
+}
+
+</style>
+
+<!-- 图片加载优化：优先加载首屏关键图片 -->
+<link rel="preload" as="image" href="1.webp">
+<link rel="preload" as="image" href="2.webp">
+<link rel="preload" as="image" href="3.webp">
+<link rel="preload" as="image" href="4.webp">
+<link rel="preload" as="image" href="5.webp">
+<link rel="preload" as="image" href="6.webp">
+<link rel="preload" as="image" href="7.webp">
+<link rel="preload" as="image" href="8.webp">
+<link rel="preload" as="image" href="9.webp">
+<link rel="preload" as="image" href="10.webp">
+<link rel="preload" as="image" href="11.webp">
+<link rel="preload" as="image" href="12.webp">
+<link rel="preload" as="image" href="13.webp">
+<link rel="preload" as="image" href="14.webp">
+<link rel="preload" as="image" href="15.webp">
+<link rel="preload" as="image" href="16.webp">
+<link rel="preload" as="image" href="17.webp">
+<meta http-equiv="Cache-Control" content="public, max-age=604800">
+
+</head>
+
+<body>
+
+<section class="hero">
+  <nav class="nav" aria-label="主导航">
+    <div class="logo">☁ 瑞博威芯</div>
+    <div class="nav-links">
+      <a href="index.html" class="active">首页</a>
+      <a href="products.html">产品中心</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="support.html">支持服务</a>
+      <a href="about.html">关于我们</a>
+    </div>
+    <a class="contact" href="contact.html">联系我们</a>
+  </nav>
+
+  <div class="layout">
+
+    <!-- 左侧 -->
+
+    <div class="copy">
+
+      <h1>
+        让生活更简单
+        <span>使酒店更智能</span>
+      </h1>
+
+      <p>
+        以智能面板、温控、场景联动为核心，
+        打造安全稳定、简约大气、易安装、
+        经久耐用的智慧空间体验。
+      </p>
+
+      <div class="buttons">
+        <a class="btn primary" href="solutions.html">探索解决方案 →</a>
+        <a class="btn ghost" href="products.html">查看产品矩阵</a>
+      </div>
+
+      <div class="features">
+
+        <div class="feature">
+          <div class="ico">⌘</div>
+          <h3>多协议兼容</h3>
+          <small>100+设备互联互通</small>
+        </div>
+
+        <div class="feature">
+          <div class="ico">AI</div>
+          <h3>AI 智能联动</h3>
+          <small>主动感知 智慧决策</small>
+        </div>
+
+        <div class="feature">
+          <div class="ico">盾</div>
+          <h3>全方位守护</h3>
+          <small>安防监测 安心无忧</small>
+        </div>
+
+        <div class="feature">
+          <div class="ico">叶</div>
+          <h3>节能环保</h3>
+          <small>智能调节 绿色生活</small>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 右侧 -->
+
+    <div class="showcase" id="products">
+
+      <div class="panel">
+
+        <div class="status">
+          <div class="product-title">产品展示</div>
+        </div>
+
+        <div class="carousel">
+
+          
+          <div class="card main">
+            <img src="1.webp" decoding="async" loading="eager" fetchpriority="high">
+            <div class="name-badge">一键开关/场景</div>
+          </div>
+
+          <div class="card">
+            <img src="2.webp" decoding="async" loading="eager" fetchpriority="high">
+            <div class="name-badge">二键开关/场景</div>
+          </div>
+
+          <div class="card">
+            <img src="3.webp" decoding="async" loading="eager" fetchpriority="high">
+            <div class="name-badge">三键开关/场景</div>
+          </div>
+
+          <div class="card">
+            <img src="4.webp" decoding="async" loading="eager" fetchpriority="high">
+            <div class="name-badge">四键开关/场景</div>
+          </div>
+
+          <div class="card">
+            <img src="5.webp" decoding="async" loading="eager" fetchpriority="high">
+            <div class="name-badge">旋钮调光器（经典款）</div>
+          </div>
+
+          <div class="card">
+            <img src="6.webp" decoding="async" loading="lazy">
+            <div class="name-badge">旋钮温控器（经典款）</div>
+          </div>
+
+          <div class="card">
+            <img src="7.webp" decoding="async" loading="lazy">
+            <div class="name-badge">旋钮温控器（彩屏款）</div>
+          </div>
+
+          <div class="card">
+            <img src="8.webp" decoding="async" loading="lazy">
+            <div class="name-badge">触控温控器（黑晶款）</div>
+          </div>
+
+          <div class="card">
+            <img src="9.webp" decoding="async" loading="lazy">
+            <div class="name-badge">紧急呼叫面板</div>
+          </div>
+
+          <div class="card">
+            <img src="10.webp" decoding="async" loading="lazy">
+            <div class="name-badge">墙壁开关</div>
+          </div>
+
+          <div class="card">
+            <img src="11.webp" decoding="async" loading="lazy">
+            <div class="name-badge">离线语音</div>
+          </div>
+
+          <div class="card">
+            <img src="12.webp" decoding="async" loading="lazy">
+            <div class="name-badge">3孔插座（16A）</div>
+          </div>
+
+          <div class="card">
+            <img src="13.webp" decoding="async" loading="lazy">
+            <div class="name-badge">5孔插座（10A）</div>
+          </div>
+
+          <div class="card">
+            <img src="14.webp" decoding="async" loading="lazy">
+            <div class="name-badge">5孔+USB插座（10A）</div>
+          </div>
+
+          <div class="card">
+            <img src="15.webp" decoding="async" loading="lazy">
+            <div class="name-badge">无线AP</div>
+          </div>
+
+          <div class="card">
+            <img src="16.webp" decoding="async" loading="lazy">
+            <div class="name-badge">插卡取电</div>
+          </div>
+
+          <div class="card">
+            <img src="17.webp" decoding="async" loading="lazy">
+            <div class="name-badge">网关中控屏</div>
+          </div>
+
+        
+
+        </div>
+
+        <div class="arrow left">‹</div>
+        <div class="arrow right">›</div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar">
+
+    <div class="bottom-item">
+      <div class="icon">⚡</div>
+      <div>
+        <h3>快速部署</h3>
+        <p>标准化安装 更省施工时间</p>
+      </div>
+    </div>
+
+    <div class="bottom-item">
+      <div class="icon">☁</div>
+      <div>
+        <h3>云端管理</h3>
+        <p>远程运维 实时状态监控</p>
+      </div>
+    </div>
+
+    <div class="bottom-item">
+      <div class="icon">⌂</div>
+      <div>
+        <h3>智慧场景</h3>
+        <p>酒店 公寓 办公全覆盖</p>
+      </div>
+    </div>
+
+    <div class="bottom-item">
+      <div class="icon">🛡</div>
+      <div>
+        <h3>稳定可靠</h3>
+        <p>工业级方案 长期稳定运行</p>
+      </div>
+    </div>
+
+  </div>
+
+
+</section>
+
+<script>
+const cards = Array.from(document.querySelectorAll('.card'));
+
+const leftArrow = document.querySelector('.arrow.left');
+const rightArrow = document.querySelector('.arrow.right');
+
+let index = 0;
+
+function render(){
+
+  cards.forEach((card, i) => {
+
+    const offset =
+      (i - index + cards.length) % cards.length;
+
+    card.className = 'card';
+
+    if(offset === 0){
+      card.classList.add('main');
+    }
+    else if(offset === 1){
+      card.classList.add('right1');
+    }
+    else if(offset === 2){
+      card.classList.add('right2');
+    }
+    else if(offset === cards.length - 1){
+      card.classList.add('left1');
+    }
+    else if(offset === cards.length - 2){
+      card.classList.add('left2');
+    }
+    else{
+      card.classList.add('hide-right');
+    }
+
+  });
+
+}
+
+function next(){
+  index = (index + 1) % cards.length;
+  render();
+}
+
+function prev(){
+  index = (index - 1 + cards.length) % cards.length;
+  render();
+}
+
+rightArrow.addEventListener('click', next);
+leftArrow.addEventListener('click', prev);
+
+render();
+
+setInterval(next,5000);
+</script>
+
+
+<script>
+/* 图片缓存优化：首次访问后缓存静态资源，二次访问更快 */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    const swCode = `
+      const CACHE_NAME = 'scw-static-cache-v1';
+      const ASSETS = [
+        './',
+        './index.html',
+        './products.html',
+        './1.webp','./2.webp','./3.webp','./4.webp','./5.webp','./6.webp','./7.webp','./8.webp','./9.webp','./10.webp','./11.webp','./12.webp','./13.webp','./14.webp','./15.webp','./16.webp','./17.webp'
+      ];
+
+      self.addEventListener('install', event => {
+        event.waitUntil(
+          caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS).catch(() => null))
+        );
+        self.skipWaiting();
+      });
+
+      self.addEventListener('activate', event => {
+        event.waitUntil(
+          caches.keys().then(keys =>
+            Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
+          )
+        );
+        self.clients.claim();
+      });
+
+      self.addEventListener('fetch', event => {
+        const request = event.request;
+        if (request.method !== 'GET') return;
+
+        event.respondWith(
+          caches.match(request).then(cached => {
+            if (cached) return cached;
+
+            return fetch(request).then(response => {
+              const copy = response.clone();
+              const url = new URL(request.url);
+              if (
+                response.ok &&
+                (url.pathname.match(/\\.(png|jpg|jpeg|webp|gif|svg|html|css|js)$/i) || url.pathname.endsWith('/'))
+              ) {
+                caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+              }
+              return response;
+            }).catch(() => cached);
+          })
+        );
+      });
+    `;
+
+    const blob = new Blob([swCode], { type: 'text/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).catch(function(){});
+  });
+}
+</script>
+
+
+<script>
+(function(){
+  var current=(location.pathname.split('/').pop()||'index.html').replace(/%20/g,' ');
+  document.querySelectorAll('.unified-nav a').forEach(function(a){
+    var href=a.getAttribute('href');
+    if(href===current){a.classList.add('active');}
+    else if(!(current==='contact.html' && a.classList.contains('contact'))){
+      if(!a.classList.contains('contact')) a.classList.remove('active');
+    }
+  });
+})();
+</script>
+</body>
+</html>
